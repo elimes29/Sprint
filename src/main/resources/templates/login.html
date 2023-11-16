@@ -5,28 +5,14 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html  xmlns:th:"http://www.thymeleaf.org">
+
        <head th:replace = "/fragments/head :: head">   </head>
-
     <body>
+        
+        <div  th:replace = "/fragments/error_exito :: div" > </div>
 
-        <div th:if="${exito != null}" class="card text-bg-success mb-3" style="max-width: 18rem;">
-            <div  class="card-body">
-                <h5 class="card-title">Éxito</h5>
-                <p class="card-text" th:text="${exito}"></p>
-            </div>
-        </div>
-        
-                <div th:if="${error != null}" class="card text-bg-danger mb-3" style="max-width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">ERROR</h5>
-                <p class="card-text" th:text="${error}"></p>
-            </div>
-        </div>
-
-        
-        
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            
+
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">Home</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,13 +20,13 @@ and open the template in the editor.
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        
+
                         <li class="nav-item">
-                            <a class="nav-link" href="/usuario/registrar">Registrate</a>
+                            <a class="nav-link" href="/registrar">Registrate</a>
                         </li>
-                        
+
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">Ingresar</a>
+                            <a class="nav-link" href="#">Ingresar</a>
                         </li>
                     </ul>
                 </div>
@@ -49,6 +35,22 @@ and open the template in the editor.
 
         <h1>Pagina de Noticias EGG</h1>
 
+        <form th:action="@{/logincheck}" method="POST">
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Nombre de Usuario</label>
+                <input type="text" name="nombre" class="form-control" id="formGroupExampleInput" placeholder="Ingrese nombre de usuario">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Contraseña</label>
+                <input type="text" name="clave" class="form-control" id="formGroupExampleInput" placeholder="Ingrese contraseña ">
+            </div>
+            <button type="submit" class="btn btn-secondary">Ingresar</button>
+        </form>
+
+        <br/>
+
+        <a class="btn btn-secondary" href="/" role="button">Volver</a>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 

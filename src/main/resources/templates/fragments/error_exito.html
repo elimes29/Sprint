@@ -1,0 +1,16 @@
+<div>
+    <div th:if="${exito != null}" class="card border-danger mb-3" style="max-width: 18rem;">
+        <div class="card-body text-danger">
+            <h5 class="card-title">Éxito</h5>
+            <p class="card-text" th:text="${exito}"></p>
+        </div>
+    </div>
+
+
+    <div th:if="${error != null}" class="card text-bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">ERROR</h5>
+            <p class="card-text" th:text="${error}"></p>
+        </div>
+    </div>
+</div>

@@ -24,14 +24,23 @@ public class UsuarioServicio implements UserDetailsService {
     private UsuarioRepositorio usuarioRepositorio;
 
     @Transactional
-    public void registrar(String nombre,  String clave, String clave2) throws Exception {
+    public void registrar(String nombre,  String clave, String clave2, String rol) throws Exception {
         validar(nombre, clave, clave2);
 
         Usuario usuario = new Usuario();
 
         usuario.setNombre(nombre);
         usuario.setClave(new BCryptPasswordEncoder().encode(clave2));
-        usuario.setRol(Rol.USER);
+        switch (rol){
+            case "USER":
+                usuario.setRol(Rol.USER);
+                break;
+            case "PERIODISTA":
+                usuario.setRol(Rol.PERIODISTA);
+                break;
+            default:
+                usuario.setRol(Rol.USER);
+        }
 
         usuarioRepositorio.save(usuario);
 

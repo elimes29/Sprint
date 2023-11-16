@@ -34,7 +34,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
                 .and().formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/logincheck")
-                    .usernameParameter("correo")
+                    .usernameParameter("nombre")
                     .passwordParameter("clave")
                     .defaultSuccessUrl("/inicio")
                     .permitAll()
