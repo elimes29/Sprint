@@ -41,10 +41,8 @@ public class PortalControlador {
         modelo.addAttribute("usuarios", usuarios);
         
         if (logueado.getRol().toString().equals("ADMIN")){
-            System.out.println("Por aca paso");
             return "redirect:/admin/dashboard";
         }
-        
         return "inicio.html";
     }
 

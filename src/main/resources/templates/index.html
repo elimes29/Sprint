@@ -4,48 +4,15 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html  xmlns:th:"http://www.thymeleaf.org">
-       <head th:replace = "/fragments/head :: head">   </head>
+<html xmlns:th:"http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace = "/fragments/head :: head">   </head>
 
     <body>
 
-        <div th:if="${exito != null}" class="card text-bg-success mb-3" style="max-width: 18rem;">
-            <div  class="card-body">
-                <h5 class="card-title">Éxito</h5>
-                <p class="card-text" th:text="${exito}"></p>
-            </div>
-        </div>
-        
-                <div th:if="${error != null}" class="card text-bg-danger mb-3" style="max-width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">ERROR</h5>
-                <p class="card-text" th:text="${error}"></p>
-            </div>
-        </div>
+        <div  th:replace = "/fragments/error_exito :: div" > </div>
 
-        
-        
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">Home</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="/usuario/registrar">Registrate</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Ingresar</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+
+        <nav th:replace = "/fragments/navbar :: nav" > </nav>
 
         <h1>Pagina de Noticias EGG</h1>
 
