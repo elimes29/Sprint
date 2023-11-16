@@ -36,19 +36,18 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre, @RequestParam String correo, @RequestParam String clave, @RequestParam String clave2, ModelMap modelo) {
+    public String registro(@RequestParam String nombre, @RequestParam String clave, @RequestParam String clave2, ModelMap modelo) {
 
         try {
-            usuarioServicio.registrar(nombre, correo, clave, clave2);
+            usuarioServicio.registrar(nombre, clave, clave2);
             modelo.put("exito", "Usuario registrado exitosamente!!!");
             List<Noticia> noticias = noticiaServicio.listarNoticias();
             modelo.addAttribute("noticias", noticias);
-            return "index-afuera.html";
+            return "redirect:/";
         } catch (Exception ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", nombre);
-            modelo.put("correo", correo);
-
+            modelo.put("nombre", nombre);
             return "inicio.html";
         }
     }

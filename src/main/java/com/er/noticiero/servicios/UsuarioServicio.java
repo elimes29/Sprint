@@ -24,13 +24,12 @@ public class UsuarioServicio implements UserDetailsService {
     private UsuarioRepositorio usuarioRepositorio;
 
     @Transactional
-    public void registrar(String nombre, String correo, String clave, String clave2) throws Exception {
-        validar(nombre, correo, clave, clave2);
+    public void registrar(String nombre,  String clave, String clave2) throws Exception {
+        validar(nombre, clave, clave2);
 
         Usuario usuario = new Usuario();
 
         usuario.setNombre(nombre);
-        usuario.setCorreo(correo.toLowerCase());
         usuario.setClave(new BCryptPasswordEncoder().encode(clave2));
         usuario.setRol(Rol.USER);
 
@@ -38,13 +37,10 @@ public class UsuarioServicio implements UserDetailsService {
 
     }
 
-    public void validar(String nombre, String correo, String clave, String clave2) throws Exception {
+    public void validar(String nombre,  String clave, String clave2) throws Exception {
 
         if (nombre.isEmpty() || nombre == null) {
             throw new Exception("Debe ingresar un nombre");
-        }
-        if (correo.isEmpty() || correo == null) {
-            throw new Exception("Debe ingresar un correo");
         }
         if (clave.isEmpty() || clave == null) {
             throw new Exception("Debe ingresar una clave");
@@ -58,8 +54,8 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepositorio.buscarPorEmail(correo.toLowerCase());
+    public UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepositorio.buscarPorEmail(nombre.toLowerCase());
 
         if (usuario != null) {
 
@@ -67,7 +63,7 @@ public class UsuarioServicio implements UserDetailsService {
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString());
             permisos.add(p);
 
-            return new User(usuario.getCorreo(), usuario.getClave(), permisos);
+            return new User(usuario.getNombre(), usuario.getClave(), permisos);
         } else {
             return null;
         }

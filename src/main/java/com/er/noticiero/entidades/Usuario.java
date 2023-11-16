@@ -2,6 +2,7 @@
 package com.er.noticiero.entidades;
 
 import com.er.noticiero.enumeraciones.Rol;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,17 +18,22 @@ public class Usuario {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String Id;
-    @Column(name="nombre")
+    @Column(name="nombre_usuario")
     private String nombre;
-    @Column(name="correo")
-    private String correo;
     @Column(name="clave")
     private String clave;
+    @Column(name = "fecha_alta", columnDefinition = "DATETIME")
+    private LocalDateTime fechaAlta;
+    @Column(name="rol")
     @Enumerated(EnumType.STRING)
     private Rol rol;
+    @Column(name="activo")
+    private Boolean activo;
     
     
     public Usuario() {
+        this.activo = true;
+        this.fechaAlta =  LocalDateTime.now();
     }
 
     public String getId() {
@@ -46,13 +52,14 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getCorreo() {
-        return correo;
+    public LocalDateTime getFechaAlta() {
+        return fechaAlta;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public Boolean getActivo() {
+        return activo;
     }
+
 
     public String getClave() {
         return clave;
