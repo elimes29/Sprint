@@ -49,7 +49,6 @@ public class NoticiaServicio {
 
         public List<Noticia> listarNoticias() {
         List<Noticia> noticias = noticiaRepositorio.findAll();
-        System.out.println("Imprime algo, please");
         //Ordenano noticias por fecha de creacion
        Collections.sort(noticias, (Noticia n1, Noticia n2) -> n2.getFechaCreacion().compareTo(n2.getFechaCreacion()));
         return noticias;

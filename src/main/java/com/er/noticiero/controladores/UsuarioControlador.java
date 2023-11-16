@@ -21,14 +21,6 @@ public class UsuarioControlador {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
-/*
-    @GetMapping("/inicio")
-    public String inicioUsuario(ModelMap modelo) {
-        List<Noticia> noticias = noticiaServicio.listarNoticias();
-        modelo.addAttribute("noticias", noticias);
-        return "inicio.html";
-    }
-*/
 
     @GetMapping("/registrar")
     public String registrar() {
