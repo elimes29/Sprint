@@ -48,7 +48,7 @@ public class UsuarioControlador {
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", nombre);
             modelo.put("nombre", nombre);
-            return "inicio.html";
+            return "index.html";
         }
     }
 

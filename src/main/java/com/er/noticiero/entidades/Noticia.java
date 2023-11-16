@@ -1,15 +1,19 @@
 
 package com.er.noticiero.entidades;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity(name="noticias")
-public class Noticia {
+public class Noticia implements Serializable {
     
     @Id
     @GeneratedValue(generator = "uuid")
@@ -22,14 +26,25 @@ public class Noticia {
     @Column(name = "cuerpo_corto")
     private String cuerpoCorto;
     @Column(name = "fecha_creacion", columnDefinition = "DATETIME")
-    private LocalDateTime fechaCreación;
+    private LocalDateTime fechaCreacion;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "id_periodista")
+    private Periodista periodista;
 
     public Noticia() {
-        this.fechaCreación = LocalDateTime.now();
+        this.fechaCreacion = LocalDateTime.now();
     }
 
-    public LocalDateTime getFechaCreación() {
-        return fechaCreación;
+    public Periodista getPeriodista() {
+        return periodista;
+    }
+
+    public void setPeriodista(Periodista periodista) {
+        this.periodista = periodista;
+    }
+
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
     }
 
     public String getCuerpoCorto() {
